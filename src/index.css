@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-grid-pattern {
+    background-image: linear-gradient(rgba(208, 32, 32, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(208, 32, 32, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+}
+
+@keyframes floatPhone {
+  0%, 100% { transform: translateY(0) rotate(-10deg); }
+  50% { transform: translateY(-16px) rotate(-10deg); }
+}
+
+@keyframes floatPill {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: floatPhone 4.5s ease-in-out infinite;
+}
+
+.animate-float-pill {
+  animation: floatPill 4.5s ease-in-out infinite;
+}
+
+.animate-float-pill-delay {
+  animation: floatPill 4.5s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+
+.has-dropdown.open .sub-menu {
+  max-height: 500px;
+}
+
+.has-dropdown.open .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.d3-tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 10px 15px;
+  font: 14px 'Inter', sans-serif;
+  background: #fff;
+  border: 1px solid #d02020;
+  border-radius: 8px;
+  pointer-events: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  color: #222;
+  z-index: 100;
+  max-width: 250px;
+  line-height: 1.4;
+}
