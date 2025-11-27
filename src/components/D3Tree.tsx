@@ -6,6 +6,7 @@ interface D3TreeProps {
   data: D3TreeBlockData['data'];
 }
 
+
 const D3Tree: React.FC<D3TreeProps> = ({ data }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
