@@ -33,7 +33,12 @@ const Sidebar = () => {
   return (
     <nav className="w-72 h-screen bg-sidebar border-r border-border-color sticky top-0 p-12 flex flex-col justify-center z-20">
       <div className="absolute top-12 left-8 flex items-center gap-2.5 font-space-grotesk text-2xl font-bold text-text-main">
-        <span className="text-accent-red">S</span> SCRIBR
+        <img
+          src="/scribr-logo.png"
+          alt="Scribr Logo"
+          className="w-20 h-20 object-contain -mr-7"
+        />
+        <span>SCRIBR</span>
       </div>
 
       <ul className="list-none">
