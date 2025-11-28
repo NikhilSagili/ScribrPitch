@@ -12,7 +12,7 @@ const PlatformSection: React.FC<PlatformSectionProps> = ({ section }) => {
   return (
     <section id={section.id} className="relative h-screen overflow-hidden">
       <div className="sticky top-0 bg-paper px-24 py-8 z-30 border-b border-border-color h-32 flex flex-col justify-center">
-        <h2 className="font-space-grotesk text-2xl font-bold text-text-main">
+        <h2 className="font-space-grotesk text-4xl font-bold text-text-main">
           {section.heading}
         </h2>
       </div>
