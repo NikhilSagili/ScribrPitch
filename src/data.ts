@@ -231,7 +231,7 @@ export const contentData: ContentData = {
                         }
                     ],
                     "competitors": [
-                        {"name": "Cred / Fold", "desc": "Strong on dashboard & discovery, weak on merchant tools.", "data": [3, 1, 1, 1, 1, 2]},
+                        {"name": "Cred / Fold", "desc": "Strong on dashboard & discovery, weak on merchant tools.", "data": [3, 1, 5, 1, 1, 2]},
                         {"name": "Razorpay / Juspay", "desc": "Payment infrastructure giants. Zero consumer interface.", "data": [1, 4, 1, 5, 1, 1]},
                         {"name": "Paytm / PhonePe", "desc": "Generic UPI apps. Good for mandates, bad for management.", "data": [3, 5, 2, 2, 1, 1]},
                         {"name": "Justdial", "desc": "Legacy discovery. No payments or subscription management.", "data": [1, 1, 1, 1, 5, 1]},
