@@ -33,14 +33,14 @@ const MarketSection: React.FC<MarketSectionProps> = ({ section }) => {
         <h2 className="font-space-grotesk text-3xl md:text-4xl font-bold text-text-main">{section.heading}</h2>
       </div>
       
-      <div className="relative w-full h-auto lg:h-[calc(100vh-128px)] flex flex-col">
+      <div className="relative w-full h-auto lg:h-[calc(100vh-128px)] flex flex-col justify-center">
         {slides.map((slide, index) => (
           <div key={index} className={`${index === activeIndex ? '' : 'hidden'}`}>
           <div className="grid grid-cols-1 lg:grid-cols-[400px,1fr] gap-8 lg:gap-14 items-center">
             <div className="flex flex-col items-center justify-center">
-              <h3 className="font-space-grotesk text-2xl lg:text-[2.2rem] font-bold uppercase text-accent-red text-center mt-4 mb-8 lg:mb-10">{slide.title}</h3>
+              <h3 className="font-space-grotesk text-2xl lg:text-[2.2rem] font-bold uppercase text-accent-red text-center mt-4 mb-8 lg:mb-10 lg:ml-10">{slide.title}</h3>
               <div 
-                className="relative w-[280px] h-[280px] sm:w-[390px] sm:h-[390px] flex items-center justify-center bg-grid-pattern mx-auto scale-75 sm:scale-100"
+                className="relative w-[280px] h-[280px] sm:w-[390px] sm:h-[350px] flex items-center justify-center bg-grid-pattern mx-auto scale-75 sm:scale-100 lg:ml-5"
                 onMouseLeave={() => setHoveredRingId(null)}
               >
                 {Object.entries(ringConfig).map(([id, config]) => {

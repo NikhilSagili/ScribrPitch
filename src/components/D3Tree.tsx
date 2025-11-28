@@ -16,8 +16,12 @@ const D3Tree: React.FC<D3TreeProps> = ({ data }) => {
 
     d3.select(svgRef.current).selectAll('*').remove();
 
+    const width = 1000;
+    const height = 600;
 
     const svg = d3.select(svgRef.current)
+      .attr('width', width)
+      .attr('height', height)
       .append('g')
       .attr('transform', 'translate(120,0)');
 
@@ -25,10 +29,10 @@ const D3Tree: React.FC<D3TreeProps> = ({ data }) => {
     const duration = 750;
     let root: any;
 
-    const treemap = d3.tree().nodeSize([40, 180]);
+    const treemap = d3.tree().size([height, width - 300]);
 
     root = d3.hierarchy(data, d => d.children);
-    root.x0 = 0;
+    root.x0 = height / 2;
     root.y0 = 0;
 
     root.children.forEach(collapse);
@@ -48,25 +52,6 @@ const D3Tree: React.FC<D3TreeProps> = ({ data }) => {
       const nodes = treeData.descendants();
       const links = treeData.descendants().slice(1);
 
-      let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
-      nodes.forEach(d => {
-        minX = Math.min(minX, d.x);
-        maxX = Math.max(maxX, d.x);
-        minY = Math.min(minY, d.y);
-        maxY = Math.max(maxY, d.y);
-      });
-
-      const newWidth = maxY - minY + 300; // Add padding
-      const newHeight = maxX - minX + 100; // Add padding
-
-      d3.select(svgRef.current)
-        .transition().duration(duration)
-        .attr('width', newWidth)
-        .attr('height', newHeight);
-      
-      svg.transition().duration(duration)
-        .attr('transform', `translate(120, ${-minX + 50})`);
-
       nodes.forEach(d => { d.y = d.depth * 180; });
 
       const node = svg.selectAll('g.node').data(nodes, (d: any) => d.id || (d.id = ++i));
@@ -80,7 +65,7 @@ const D3Tree: React.FC<D3TreeProps> = ({ data }) => {
             d3.select(tooltipRef.current).transition().duration(200).style('opacity', 1);
             d3.select(tooltipRef.current)
               .html(d.data.description)
-              .style('left', `${d.y + 130}px`)
+              .style('left', `${d.y + 140}px`)
               .style('top', `${d.x}px`);
           }
         })
@@ -175,7 +160,7 @@ const D3Tree: React.FC<D3TreeProps> = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="relative d3-tree-container">
+    <div className="relative d3-tree-container border border-border-color rounded-lg overflow-hidden">
       <svg ref={svgRef}></svg>
       <div ref={tooltipRef} className="d3-tooltip" style={{ opacity: 0 }}></div>
     </div>
@@ -183,7 +168,3 @@ const D3Tree: React.FC<D3TreeProps> = ({ data }) => {
 };
 
 export default D3Tree;
-
-
-
-
