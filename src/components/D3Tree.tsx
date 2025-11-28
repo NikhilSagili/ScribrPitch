@@ -16,11 +16,12 @@ const D3Tree: React.FC<D3TreeProps> = ({ data }) => {
 
     d3.select(svgRef.current).selectAll('*').remove();
 
-    const width = 1000;
+    const container = svgRef.current.parentElement;
+    const initialWidth = container ? container.clientWidth : 1000;
     const height = 600;
 
     const svg = d3.select(svgRef.current)
-      .attr('width', width)
+      .attr('width', initialWidth)
       .attr('height', height)
       .append('g')
       .attr('transform', 'translate(120,0)');
@@ -29,7 +30,7 @@ const D3Tree: React.FC<D3TreeProps> = ({ data }) => {
     const duration = 750;
     let root: any;
 
-    const treemap = d3.tree().size([height, width - 300]);
+    const treemap = d3.tree().size([height, initialWidth - 300]);
 
     root = d3.hierarchy(data, d => d.children);
     root.x0 = height / 2;
@@ -51,6 +52,23 @@ const D3Tree: React.FC<D3TreeProps> = ({ data }) => {
       const treeData = treemap(root);
       const nodes = treeData.descendants();
       const links = treeData.descendants().slice(1);
+
+      let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+      nodes.forEach(d => {
+        minX = Math.min(minX, d.x);
+        maxX = Math.max(maxX, d.x);
+        minY = Math.min(minY, d.y);
+        maxY = Math.max(maxY, d.y);
+      });
+
+      const newWidth = maxY - minY + 300; // Add padding
+
+      d3.select(svgRef.current)
+        .transition().duration(duration)
+        .attr('width', newWidth);
+      
+      svg.transition().duration(duration)
+        .attr('transform', `translate(120, 0)`);
 
       nodes.forEach(d => { d.y = d.depth * 180; });
 
